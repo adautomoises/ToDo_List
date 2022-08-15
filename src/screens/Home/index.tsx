@@ -8,6 +8,7 @@ export function Home(){
   const [tasks, setTasks] = useState<string[]>([]);
   const [tasksName, setTasksName] = useState("");
 
+  const lenTasks = tasks.length
 
   function handleTaskAdd() {
     if(tasksName === ""){
@@ -33,7 +34,11 @@ export function Home(){
     ])
   }
   function handleTaskCheck(name: String){
+    // console.log("Task Check =>", name)
+    const nameCheckTask = tasks.filter(task => task === name)
 
+
+    console.log(nameCheckTask[0])
   }
 
   return(
@@ -60,7 +65,7 @@ export function Home(){
           <View style={styles.tasksCreatedInfo}>
             <Text style={styles.textCreated}>Criadas</Text>
             <View style={styles.viewCreatedCount}>
-              <Text style={styles.textCreatedCount}>0</Text>
+              <Text style={styles.textCreatedCount}>{lenTasks}</Text>
             </View>
           </View>
           <View style={styles.tasksDoneInfo}>

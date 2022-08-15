@@ -74,8 +74,8 @@ export const styles = StyleSheet.create({
   viewCreatedCount:{
     backgroundColor: '#333333',
     borderRadius: 50,
-    width: 25,
-    height: 19,
+    width: 31,
+    height: 25,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -93,16 +93,15 @@ export const styles = StyleSheet.create({
     marginRight: 12,
   },
   viewDoneCount:{
-
+    backgroundColor: '#333333',
+    borderRadius: 50,
+    width: 31,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   textDoneCount: {
     color: '#FFF',
-    backgroundColor: '#333333',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    width: 25,
-    height: 19,
   },
   listEmpty:{
     paddingTop: 48,
