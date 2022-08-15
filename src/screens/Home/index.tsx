@@ -57,8 +57,18 @@ export function Home(){
       </View>
       <View style={styles.tasks}>
         <View style={styles.tasksInfo}>
-          <View><Text style={styles.tasksCreated}>Criadas</Text></View>
-          <View><Text style={styles.tasksDone}>Concluídas</Text></View>
+          <View style={styles.tasksCreatedInfo}>
+            <Text style={styles.textCreated}>Criadas</Text>
+            <View style={styles.viewCreatedCount}>
+              <Text style={styles.textCreatedCount}>0</Text>
+            </View>
+          </View>
+          <View style={styles.tasksDoneInfo}>
+            <Text style={styles.textDone}>Concluídas</Text>
+            <View style={styles.viewDoneCount}>
+              <Text style={styles.textDoneCount}>0</Text>
+            </View>
+          </View>
         </View>
         <FlatList
           data={tasks}
@@ -66,6 +76,7 @@ export function Home(){
           renderItem={({ item }) => (
             <Task
             key={item}
+            name={item}
             onRemove={() => handleTaskRemove(item)}
             onCheck={() => handleTaskCheck(item)}
             />

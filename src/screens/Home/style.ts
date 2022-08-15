@@ -53,7 +53,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tasks:{
-    width: '88.5%',
+    flex:1,
+    width: 400,
+    marginLeft: 24,
+    marginRight: 24,
   },
   tasksInfo:{
     marginTop: 55,
@@ -61,11 +64,45 @@ export const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent: 'space-between',
   },
-  tasksCreated:{
-    color: '#4EA8DE'
+  tasksCreatedInfo:{
+    flexDirection: 'row',
   },
-  tasksDone:{
-    color: '#8284FA'
+  textCreated:{
+    color: '#4EA8DE',
+    marginRight: 12,
+  },
+  viewCreatedCount:{
+    backgroundColor: '#333333',
+    borderRadius: 50,
+    width: 25,
+    height: 19,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textCreatedCount:{
+    color: '#FFF',
+  },
+  
+  tasksDoneInfo:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textDone:{
+    color: '#8284FA',
+    marginRight: 12,
+  },
+  viewDoneCount:{
+
+  },
+  textDoneCount: {
+    color: '#FFF',
+    backgroundColor: '#333333',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    width: 25,
+    height: 19,
   },
   listEmpty:{
     paddingTop: 48,
@@ -83,5 +120,7 @@ export const styles = StyleSheet.create({
     color: 'gray',
     fontSize: 14,
   },
+  flatList:{
+  }
 
 })
