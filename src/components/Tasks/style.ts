@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: '100%',
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -15,11 +15,13 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
   taskText: {
+    width: '80%',
     color: "#F2F2F2",
     fontSize: 14,
     fontWeight: "400",
-    width: "80%",
     height: 48,
+    marginLeft: 12,
+    marginRight: 12,
   },
   buttonCheck: {},
   buttonRemove: {
