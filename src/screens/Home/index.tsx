@@ -4,44 +4,32 @@ import { styles } from './style';
 import { useState } from 'react';
 import { Task } from '../../components/Tasks'
 
-export function Home(){
-  const [tasks, setTasks] = useState<string[]>([]);
+export function Home() {
+  const [tasks, setTasks] = useState<{}>([]);
   const [tasksName, setTasksName] = useState("");
+  const [status, setStatus] = useState(false)
+  const [remove, setRemove] = useState(false)
 
-  const lenTasks = tasks.length
 
   function handleTaskAdd() {
-    if(tasksName === ""){
-      return Alert.alert("Não foi possível adicionar","Digite o nome da tarefa.")
+    const data = { name: tasksName, key: tasksName, status: status, remove: remove }
 
-    }
-    if(tasks.includes(tasksName)){
-      return Alert.alert("Não foi possível adicionar","Já existe essa tarefa na lista.")
-    }
-    setTasks(prevState => [...prevState, tasksName])
+    setTasks(prevState => [...prevState, data])
     setTasksName("")
-  }
-  function handleTaskRemove(name: String) {
-    return Alert.alert("Remover",`Remover a tarefa ${name}?`,[
-      {
-        text: "Sim",
-        onPress: () =>   setTasks(prevState =>prevState.filter(tasks => tasks !== name))
-      },
-      {
-        text: "Não",
-        style: 'cancel'
-      }
-    ])
-  }
-  function handleTaskCheck(name: String){
-    // console.log("Task Check =>", name)
-    const nameCheckTask = tasks.filter(task => task === name)
 
-
-    console.log(nameCheckTask[0])
+  }
+  function handleTaskRemove(name: string) {
+    if (remove == true) {
+      setTasks(tasks.filter(function (data) { return data.name !== name; }));
+      setRemove(false)
+    } else {
+      return setRemove(true)
+    }
+  }
+  function handleTaskCheck(name: string) {
   }
 
-  return(
+  return (
     <View style={styles.screen}>
       <View style={styles.container}>
         <FontAwesome5 name="react" size={40} color="#4EA8DE" />
@@ -50,11 +38,11 @@ export function Home(){
       </View>
       <View style={styles.input}>
         <TextInput
-        style={styles.textInput}
-        placeholder="Adicione uma nova tarefa"
-        placeholderTextColor= '#808080'
-        onChangeText={setTasksName}
-        value={tasksName}
+          style={styles.textInput}
+          placeholder="Adicione uma nova tarefa"
+          placeholderTextColor='#808080'
+          onChangeText={setTasksName}
+          value={tasksName}
         />
         <TouchableOpacity style={styles.buttonInput} onPress={handleTaskAdd}>
           <FontAwesome5 name="plus-square" size={24} color="white" />
@@ -65,7 +53,7 @@ export function Home(){
           <View style={styles.tasksCreatedInfo}>
             <Text style={styles.textCreated}>Criadas</Text>
             <View style={styles.viewCreatedCount}>
-              <Text style={styles.textCreatedCount}>{lenTasks}</Text>
+              <Text style={styles.textCreatedCount}>0</Text>
             </View>
           </View>
           <View style={styles.tasksDoneInfo}>
@@ -77,15 +65,29 @@ export function Home(){
         </View>
         <FlatList
           data={tasks}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.key}
           renderItem={({ item }) => (
-            <Task
-            key={item}
-            name={item}
-            onRemove={() => handleTaskRemove(item)}
-            onCheck={() => handleTaskCheck(item)}
-            />
-            )}
+            // <Task
+            // status={false}
+            // key={item.key}
+            // name={item.name}
+            // onRemove={() => handleTaskRemove(item.name)}
+            // onCheck={() => handleTaskCheck(item.name)}
+            // />
+            <View style={styles.taskContainer}>
+              <TouchableOpacity style={styles.buttonCheck} 
+              onPress={() => handleTaskCheck(item.name)}
+              >
+                <FontAwesome5 name="circle" size={20} color="#4EA8DE" />
+              </TouchableOpacity>
+              <Text style={styles.taskText}>{item.name}</Text>
+              <TouchableOpacity style={styles.buttonRemove}
+                onPress={() => handleTaskRemove(item.name)}
+              >
+                <FontAwesome5 name="trash-alt" size={16} color={remove == false ? 'gray' : 'red'} />
+              </TouchableOpacity>
+            </View>
+          )}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (
             <View style={styles.listEmpty}>
@@ -97,7 +99,7 @@ export function Home(){
                 Crie tarefas e organize seus itens a fazer
               </Text>
             </View>
-            )}
+          )}
         />
 
       </View>
