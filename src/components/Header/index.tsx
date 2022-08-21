@@ -5,9 +5,10 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 interface HeaderProps {
   tasksCounter: number;
+  tasksDone: number;
 }
 
-export function Header({ tasksCounter }: HeaderProps) {
+export function Header({ tasksCounter, tasksDone }: HeaderProps) {
   return (
     <View style={styles.screen}>
     <View style={styles.container}>
@@ -26,7 +27,7 @@ export function Header({ tasksCounter }: HeaderProps) {
           <View style={styles.tasksDoneInfo}>
             <Text style={styles.textDone}>Concluídas</Text>
             <View style={styles.viewDoneCount}>
-              <Text style={styles.textDoneCount}>0</Text>
+              <Text style={styles.textDoneCount}>{tasksDone}</Text>
             </View>
           </View>
         </View>
